@@ -16,16 +16,20 @@ namespace StreamCompaction {
 
         __global__ void kernUpSweep(int n, int stride, int* data) {
             int t = blockIdx.x * blockDim.x + threadIdx.x;
+            // Only n / stride threads have work this level. Checking t first keeps
+            // t * stride from overflowing int for large arrays / block sizes.
+            if (t >= n / stride) return;
             int k = t * stride;
-            if (k + stride - 1 >= n) return;
 
             data[k + stride - 1] += data[k + stride / 2 - 1];
         }
 
         __global__ void kernDownSweep(int n, int stride, int* data) {
             int t = blockIdx.x * blockDim.x + threadIdx.x;
+            // Only n / stride threads have work this level. Checking t first keeps
+            // t * stride from overflowing int for large arrays / block sizes.
+            if (t >= n / stride) return;
             int k = t * stride;
-            if (k + stride - 1 >= n) return;
 
             int left = k + stride / 2 - 1;
             int right = k + stride - 1;
