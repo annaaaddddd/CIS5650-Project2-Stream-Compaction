@@ -1,0 +1,131 @@
+param,value,test,ms
+size,2^8,cpu scan, power-of-two,0.0006
+size,2^8,cpu scan, non-power-of-two,0.0001
+size,2^8,naive scan, power-of-two,0.187392
+size,2^8,naive scan, non-power-of-two,0.053248
+size,2^8,work-efficient scan, power-of-two,0.300032
+size,2^8,work-efficient scan, non-power-of-two,0.129024
+size,2^8,thrust scan, power-of-two,0.104448
+size,2^8,thrust scan, non-power-of-two,0.033792
+size,2^8,cpu compact without scan, power-of-two,0.0005
+size,2^8,cpu compact without scan, non-power-of-two,0.0003
+size,2^8,cpu compact with scan,0.0013
+size,2^8,work-efficient compact, power-of-two,0.293888
+size,2^8,work-efficient compact, non-power-of-two,0.18944
+size,2^10,cpu scan, power-of-two,0.0008
+size,2^10,cpu scan, non-power-of-two,0.0004
+size,2^10,naive scan, power-of-two,0.200544
+size,2^10,naive scan, non-power-of-two,0.07168
+size,2^10,work-efficient scan, power-of-two,0.280576
+size,2^10,work-efficient scan, non-power-of-two,0.17408
+size,2^10,thrust scan, power-of-two,0.111616
+size,2^10,thrust scan, non-power-of-two,0.04096
+size,2^10,cpu compact without scan, power-of-two,0.002
+size,2^10,cpu compact without scan, non-power-of-two,0.001
+size,2^10,cpu compact with scan,0.0032
+size,2^10,work-efficient compact, power-of-two,0.330752
+size,2^10,work-efficient compact, non-power-of-two,0.190464
+size,2^12,cpu scan, power-of-two,0.002
+size,2^12,cpu scan, non-power-of-two,0.0014
+size,2^12,naive scan, power-of-two,0.225216
+size,2^12,naive scan, non-power-of-two,0.091136
+size,2^12,work-efficient scan, power-of-two,0.333824
+size,2^12,work-efficient scan, non-power-of-two,0.19456
+size,2^12,thrust scan, power-of-two,0.097024
+size,2^12,thrust scan, non-power-of-two,0.038912
+size,2^12,cpu compact without scan, power-of-two,0.0073
+size,2^12,cpu compact without scan, non-power-of-two,0.0045
+size,2^12,cpu compact with scan,0.0155
+size,2^12,work-efficient compact, power-of-two,0.418816
+size,2^12,work-efficient compact, non-power-of-two,0.25312
+size,2^14,cpu scan, power-of-two,0.0069
+size,2^14,cpu scan, non-power-of-two,0.0057
+size,2^14,naive scan, power-of-two,0.24576
+size,2^14,naive scan, non-power-of-two,0.109568
+size,2^14,work-efficient scan, power-of-two,0.340992
+size,2^14,work-efficient scan, non-power-of-two,0.266464
+size,2^14,thrust scan, power-of-two,0.108736
+size,2^14,thrust scan, non-power-of-two,0.038912
+size,2^14,cpu compact without scan, power-of-two,0.0278
+size,2^14,cpu compact without scan, non-power-of-two,0.0248
+size,2^14,cpu compact with scan,0.0593
+size,2^14,work-efficient compact, power-of-two,0.453632
+size,2^14,work-efficient compact, non-power-of-two,0.301056
+size,2^16,cpu scan, power-of-two,0.0295
+size,2^16,cpu scan, non-power-of-two,0.0278
+size,2^16,naive scan, power-of-two,0.279808
+size,2^16,naive scan, non-power-of-two,0.124032
+size,2^16,work-efficient scan, power-of-two,0.372448
+size,2^16,work-efficient scan, non-power-of-two,0.228512
+size,2^16,thrust scan, power-of-two,0.1016
+size,2^16,thrust scan, non-power-of-two,0.023552
+size,2^16,cpu compact without scan, power-of-two,0.1073
+size,2^16,cpu compact without scan, non-power-of-two,0.1015
+size,2^16,cpu compact with scan,0.1933
+size,2^16,work-efficient compact, power-of-two,0.419552
+size,2^16,work-efficient compact, non-power-of-two,0.258976
+size,2^18,cpu scan, power-of-two,0.1122
+size,2^18,cpu scan, non-power-of-two,0.096
+size,2^18,naive scan, power-of-two,0.294112
+size,2^18,naive scan, non-power-of-two,0.164992
+size,2^18,work-efficient scan, power-of-two,0.568832
+size,2^18,work-efficient scan, non-power-of-two,0.338496
+size,2^18,thrust scan, power-of-two,0.494624
+size,2^18,thrust scan, non-power-of-two,0.438464
+size,2^18,cpu compact without scan, power-of-two,0.4177
+size,2^18,cpu compact without scan, non-power-of-two,0.413
+size,2^18,cpu compact with scan,0.9413
+size,2^18,work-efficient compact, power-of-two,0.469088
+size,2^18,work-efficient compact, non-power-of-two,0.339168
+size,2^20,cpu scan, power-of-two,0.4372
+size,2^20,cpu scan, non-power-of-two,0.3814
+size,2^20,naive scan, power-of-two,0.355776
+size,2^20,naive scan, non-power-of-two,0.259424
+size,2^20,work-efficient scan, power-of-two,0.422112
+size,2^20,work-efficient scan, non-power-of-two,0.333344
+size,2^20,thrust scan, power-of-two,0.4608
+size,2^20,thrust scan, non-power-of-two,0.447712
+size,2^20,cpu compact without scan, power-of-two,1.6439
+size,2^20,cpu compact without scan, non-power-of-two,1.608
+size,2^20,cpu compact with scan,3.515
+size,2^20,work-efficient compact, power-of-two,0.518496
+size,2^20,work-efficient compact, non-power-of-two,0.352608
+size,2^22,cpu scan, power-of-two,1.859
+size,2^22,cpu scan, non-power-of-two,1.7906
+size,2^22,naive scan, power-of-two,1.10755
+size,2^22,naive scan, non-power-of-two,0.951424
+size,2^22,work-efficient scan, power-of-two,0.868512
+size,2^22,work-efficient scan, non-power-of-two,0.72816
+size,2^22,thrust scan, power-of-two,0.538624
+size,2^22,thrust scan, non-power-of-two,0.484352
+size,2^22,cpu compact without scan, power-of-two,6.6404
+size,2^22,cpu compact without scan, non-power-of-two,6.5694
+size,2^22,cpu compact with scan,14.2828
+size,2^22,work-efficient compact, power-of-two,0.989088
+size,2^22,work-efficient compact, non-power-of-two,0.883392
+size,2^24,cpu scan, power-of-two,7.5133
+size,2^24,cpu scan, non-power-of-two,7.4024
+size,2^24,naive scan, power-of-two,4.14003
+size,2^24,naive scan, non-power-of-two,4.00141
+size,2^24,work-efficient scan, power-of-two,2.22634
+size,2^24,work-efficient scan, non-power-of-two,2.06755
+size,2^24,thrust scan, power-of-two,0.794688
+size,2^24,thrust scan, non-power-of-two,0.775168
+size,2^24,cpu compact without scan, power-of-two,25.4885
+size,2^24,cpu compact without scan, non-power-of-two,26.261
+size,2^24,cpu compact with scan,56.2723
+size,2^24,work-efficient compact, power-of-two,2.77446
+size,2^24,work-efficient compact, non-power-of-two,2.69168
+size,2^26,cpu scan, power-of-two,30.727
+size,2^26,cpu scan, non-power-of-two,29.7868
+size,2^26,naive scan, power-of-two,17.6498
+size,2^26,naive scan, non-power-of-two,17.4739
+size,2^26,work-efficient scan, power-of-two,7.62922
+size,2^26,work-efficient scan, non-power-of-two,7.46877
+size,2^26,thrust scan, power-of-two,1.4039
+size,2^26,thrust scan, non-power-of-two,1.3689
+size,2^26,cpu compact without scan, power-of-two,103.588
+size,2^26,cpu compact without scan, non-power-of-two,104.192
+size,2^26,cpu compact with scan,228.962
+size,2^26,work-efficient compact, power-of-two,10.0319
+size,2^26,work-efficient compact, non-power-of-two,9.86995

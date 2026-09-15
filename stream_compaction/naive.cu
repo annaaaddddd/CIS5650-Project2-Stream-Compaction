@@ -12,7 +12,7 @@ namespace StreamCompaction {
             return timer;
         }
 
-        static const int blockSize = 128;
+        static const int blockSize = 256;
 
         // TODO: __global__
         __global__ void kernNaiveScanStep(int n, int offset, int* odata, const int* idata)
