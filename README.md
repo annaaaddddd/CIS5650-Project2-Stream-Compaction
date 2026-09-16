@@ -25,6 +25,7 @@ Implemented:
   to a power of two. Also stream compaction built on top of it, with the map and
   scatter kernels in `common.cu`.
 * `thrust.cu`: `thrust::exclusive_scan` on device vectors.
+* `radix.cu` (extra credit): radix sort built on the work-efficient scan.
 
 All versions work for non-power-of-two sizes and were checked up to 2^26 elements.
 
@@ -258,6 +259,62 @@ Checking `t` before the multiply also avoids an int overflow in `t * stride`
 that showed up at 2^22 with blockSize 512. The strided access pattern is still
 there; fixing that would need the shared-memory version from GPU Gems.
 
+### Extra credit: radix sort
+
+`stream_compaction/radix.cu` sorts an array of non-negative ints with LSB-first
+radix sort, using the work-efficient scan for each pass. One pass is the split
+from the lecture slides: false keys (bit = 0) go before true keys (bit = 1),
+keeping their order.
+
+```
+in   [4 7 2 6 3 5 1 0]   look at bit 0
+e    [1 0 1 1 0 0 0 1]   e[i] = bit is 0
+f    [0 1 1 2 3 3 3 3]   f = exclusive_scan(e)        (kernComputeE + scanDevice)
+totalFalses = e[n-1] + f[n-1] = 4
+d    [0 4 1 2 5 6 7 3]   d[i] = e[i] ? f[i] : i - f[i] + totalFalses
+out  [4 2 6 0 7 3 5 1]   out[d[i]] = in[i]            (kernScatterRadix)
+```
+
+Two kernels and one scan per pass, ping-ponging between two buffers. The
+number of passes is the number of bits in the largest key (found on the host
+with `std::max_element`), so the `[0, 50)` test data takes 6 passes instead
+of 31. Negative numbers are not handled.
+
+Called like the other implementations:
+
+```cpp
+StreamCompaction::Radix::sort(n, odata, idata);
+```
+
+The tests in `main.cpp` (added for this part) sort random arrays with
+`std::sort` as the reference: 6-bit keys at power-of-two and non-power-of-two
+sizes, and 30-bit keys to exercise the full pass count. Output with
+`SIZE = 1 << 8`:
+
+```
+*****************************
+****** RADIX SORT TESTS *****
+*****************************
+    [  27   2  19  24  44  25  15  10  40  47  15  44  48 ...  41  23 ]
+==== radix sort, power-of-two ====
+   elapsed time: 1.25133ms    (CUDA Measured)
+    [   0   0   0   0   0   0   1   1   1   1   1   1   1 ...  49  49 ]
+    passed
+==== radix sort, non-power-of-two ====
+   elapsed time: 1.10387ms    (CUDA Measured)
+    [   0   0   0   0   0   0   1   1   1   1   1   1   1 ...  49  49 ]
+    passed
+    [ 570649178 492941645 541588374 99116069 212104168 206562473 85267515 1073705406 575356471 1036321501 446198464 974215865 771267008 ... 336588540 577522390 ]
+==== radix sort, 30-bit keys ====
+   elapsed time: 6.02624ms    (CUDA Measured)
+    [ 5418229 6709336 8581290 14322318 16053296 20936416 22010305 22315142 24533517 27740696 50612328 52705482 53582251 ... 1068272613 1073705406 ]
+    passed
+```
+
+With `SIZE = 1 << 22` (via `sweep.sh`, min of 3 runs) the 6-bit sort takes
+5.6 ms and the 30-bit sort 26.8 ms, about 0.9 ms per pass, which is a scan
+plus two full passes over the array each time.
+
 ## Test output
 
 `SIZE = 1 << 26` (`NPOT = SIZE - 3`), Release, no debugger:
@@ -319,5 +376,5 @@ there; fixing that would need the shared-memory version from GPU Gems.
 
 The scan total at 2^26 is about 1.64e9, close to `INT_MAX`, so with values in
 `[0, 50)` the test can't go much larger without overflowing int. That is why
-the sweep stops at 2^26. No tests were added to `main.cpp`; the extra sizes
-and block sizes were run through `sweep.sh`.
+the sweep stops at 2^26. The only test added to `main.cpp` is the radix sort
+section above; the extra sizes and block sizes were run through `sweep.sh`.

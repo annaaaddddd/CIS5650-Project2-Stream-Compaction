@@ -44,7 +44,7 @@ namespace StreamCompaction {
          * paddedN must be a power of two; the array must already be zero-padded.
          * No timing and no memory allocation here, so compact() can reuse it.
          */
-        static void scanDevice(int paddedN, int* dev_data) {
+        void scanDevice(int paddedN, int* dev_data) {
             int numLevels = ilog2(paddedN);
 
             // Up-sweep (parallel reduction): stride = 2, 4, 8, ..., paddedN
